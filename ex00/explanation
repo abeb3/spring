@@ -1,0 +1,15 @@
+2019-01-02
+1)
+src-main-webapp-WEB-INF에서
+spring폴더랑
+web.xml파일을 삭제후
+   <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<version>3.2.0</version>
+            	<configuration>
+            		<failOnMissingWebXml>false</failOnMissingWebXml>
+            	</configuration>
+     </plugin>
+ pom.xml 파일에 위에 plugin을 추가를 해주고 comfiler의 버전도 java-version에 맞추고, maven update를 진행하면 된다.
+        
