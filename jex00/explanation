@@ -52,3 +52,8 @@ JDBC 처리, connection pool 처리 완료
 connection pool은 https://github.com/brettwooldridge/HikariCP에서 HikariCP로 처리를 했다.
 
 mybatis를 이용해서 sqlSession 연결 처리도 했다.
+
+
+2019-01-04
+1) 오전
+어제에 이어서 jdbc연결(log4jdbc로) 처리및 mepper 처리 완료.
