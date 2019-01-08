@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.zerock</groupId>
 	<artifactId>controller</artifactId>
-	<name>ex00</name>
+	<name>jex01</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -93,8 +93,8 @@
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.0</version>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -109,64 +109,13 @@
 			<version>1.2</version>
 		</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!-- Test -->
 		<dependency>
-   			 <groupId>junit</groupId>
-   			 <artifactId>junit</artifactId>
- 			 <version>4.12</version>
- 		   	 <scope>test</scope>
-		</dependency>
-	    <dependency>
-    	    <groupId>org.hamcrest</groupId>
-       		 <artifactId>hamcrest-all</artifactId>
-       		 <version>1.1</version>
-      		  <scope>test</scope>
-   		 </dependency>
-   		 <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-   		 <!-- junit에 필수적인것 -->
-		<dependency>
-   			 <groupId>org.springframework</groupId>
-    			<artifactId>spring-test</artifactId>
-    			<version>5.0.7.RELEASE</version>
-    			<scope>test</scope>
-		</dependency>
-		
-		<!-- https://github.com/brettwooldridge/HikariCP -->
-   		<dependency>
-        	<groupId>com.zaxxer</groupId>
-       	    <artifactId>HikariCP</artifactId>
-       	    <version>2.7.4</version>
-    	</dependency>
-    	
-    	<!-- mybatis -->
-    	<dependency>
- 			 <groupId>org.mybatis</groupId>
- 			 <artifactId>mybatis</artifactId>
-			  <version>3.4.6</version>
-		</dependency>
-		
-		<!-- mybatis-spring connection -->
-		<dependency>
-  			<groupId>org.mybatis</groupId>
- 			 <artifactId>mybatis-spring</artifactId>
-  			<version>1.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.4</version>
-			<scope>provided</scope>
-		</dependency>
-		
-		<!-- http://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/
-		log4jdbc-log4j2-jdbc4 -->
-		<dependency>
-			<groupId>org.bgee.log4jdbc-log4j2</groupId>
-			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
-			<version>1.16</version>
-		</dependency>
-		
-		
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>        
 	</dependencies>
     <build>
         <plugins>
@@ -189,8 +138,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
@@ -204,7 +153,7 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
-              <plugin>
+             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
             	<artifactId>maven-war-plugin</artifactId>
             	<version>3.2.0</version>

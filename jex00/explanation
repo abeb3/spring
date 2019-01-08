@@ -57,3 +57,31 @@ mybatis를 이용해서 sqlSession 연결 처리도 했다.
 2019-01-04
 1) 오전
 어제에 이어서 jdbc연결(log4jdbc로) 처리및 mepper 처리 완료.
+
+2019-01-09
+1) 오후 
+새 pjt 생성
+스프링 mvc model 2 관련 정리.
+
+servlet에서 model2 방식으로 데이터 처리
+
+request.setAttribute("serverTime",new java.util.Date());
+
+RequestDispatcher dispatcher = request.gerRequestDispatcher("/WEB-INF/jsp/home.jsp");
+
+dispatcher.forward(request,response);
+
+이렇게 처리 한것이
+
+스프링 mvc에서 model을 이용해서 데이터 전달을 하면
+
+public String home(Model model){
+
+	model.addAttribute("serverTime", new java.util.Date());
+	
+	return "home";
+}
+
+이렇게만으로 처리가 가능 하다.
+
+가독성은 물론이며 더 직관적인 코드가 되었다.
