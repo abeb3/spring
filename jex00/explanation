@@ -58,7 +58,7 @@ mybatis를 이용해서 sqlSession 연결 처리도 했다.
 1) 오전
 어제에 이어서 jdbc연결(log4jdbc로) 처리및 mepper 처리 완료.
 
-2019-01-09
+2019-01-08
 1) 오후 
 새 pjt 생성
 스프링 mvc model 2 관련 정리.
@@ -85,3 +85,11 @@ public String home(Model model){
 이렇게만으로 처리가 가능 하다.
 
 가독성은 물론이며 더 직관적인 코드가 되었다.
+
+
+2019-01-09
+1)오전
+	controller를 이용해서 request와 response 객체를 스프링에서 처리하는 방법및 http header를 가공하는 방법을 알게 되었다.
+	
+	upload하기 전에 설정하는 방법도 처리했으며, tomcat의 version을 9.0으로 upgrade처리 했다.
+	
