@@ -92,4 +92,27 @@ public String home(Model model){
 	controller를 이용해서 request와 response 객체를 스프링에서 처리하는 방법및 http header를 가공하는 방법을 알게 되었다.
 	
 	upload하기 전에 설정하는 방법도 처리했으며, tomcat의 version을 9.0으로 upgrade처리 했다.
+
+2)오후
+
+	controller exception처리	
+
+	mvc 관련 기본 구성
 	
+	org.zerock pjt에서
+	
+	config : 프로젝트와 관련된 설정 클래스들의 보관 패키지
+	
+	controller : 스프링 mvc의 controller들의 보관 패키지
+	
+	service : 스프링의 service 인터페이스와 구현 클래스 패키지
+	
+	domain : vo,dto 클래스들의 패키지
+	
+	exception : 웹 관련 예외처리 패키지
+	
+	aop : 스프링의 aop 관련 패키지
+	
+	security : 스프링의 security 관련 패키지
+	
+	util : 스프링의 util 관련 패키지

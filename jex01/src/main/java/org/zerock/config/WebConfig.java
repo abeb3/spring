@@ -21,5 +21,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		// TODO Auto-generated method stub
 		return new String[] {"/"};
 	}
+	
+//	@Override
+//	protected void customizeRegistration() {
+//		
+//		registration.serInitParameter("throwExceptionIfNoHandlerFound","true");
+//	}
 
 }
