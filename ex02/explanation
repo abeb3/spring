@@ -1,0 +1,154 @@
+2019-01-02
+1)
+src-main-webapp-WEB-INF에서
+spring폴더랑
+web.xml파일을 삭제후
+   <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<version>3.2.0</version>
+            	<configuration>
+            		<failOnMissingWebXml>false</failOnMissingWebXml>
+            	</configuration>
+     </plugin>
+ pom.xml 파일에 위에 plugin을 추가를 해주고 comfiler의 버전도 java-version에 맞추고, maven update를 진행하면 된다.
+
+ 
+ 
+2019-01-03
+1)
+junit 때문에 매우매우 고생을 했다....
+이유는 특별할것이 없이 Test 어노테이션이 보이지 않아서 2시간동안 정말 삽질했다..
+스프링을 지웠다 다시 깔고, 다른방법으로 설치도 해보고 했으나 모두 해결이 되지 않았다.
+
+		<dependency>
+   			 <groupId>org.springframework</groupId>
+    			<artifactId>spring-test</artifactId>
+    			<version>5.0.7.RELEASE</version>
+    			<scope>test</scope>
+		</dependency>
+		
+방법은 위 의존성을 pom.xml에 작성을 해줘야 정상적으로 처리가 된다.
+마침 스프링 버전도 5.0.7.RELEASE버전이라서 호환이 되는거 같다.
+
+그 후에 또 바보처럼 Chef에 자기 자신을 의존주입하는 코드를 잘못 넣고 10분정도 삽질한거 같다...
+
+우선 오전 공부는 이정도인거 같다.
+
+2)
+오후 공부
+처음은 우선 설치 했던 oracle을 전체 지우고 새롭게 설치를 했다.
+
+정말 spring은 설정이 반이라는 말이 틀리지 않는거 같다.
+
+우선 예전에 설치를 할때는 바탕화면에 localhost로 접속이 가능한 oracle 모양이 있었는데
+
+지금은 보이지 않는다... 하지만 설치는 잘 됬는지 oracle에 관련된 모든 부분과 쿼리, sql developer 역시 작동이 잘된다.
+
+그리고 한가지 깨닫은것은 사용자를 추가 할때 직접 작성해서 처리 하는게 더 정확하다...
+
+JDBC 처리, connection pool 처리 완료
+
+connection pool은 https://github.com/brettwooldridge/HikariCP에서 HikariCP로 처리를 했다.
+
+mybatis를 이용해서 sqlSession 연결 처리도 했다.
+
+
+2019-01-04
+1) 오전
+어제에 이어서 jdbc연결(log4jdbc로) 처리및 mepper 처리 완료.
+
+2019-01-08
+1) 오후 
+새 pjt 생성
+스프링 mvc model 2 관련 정리.
+
+servlet에서 model2 방식으로 데이터 처리
+
+request.setAttribute("serverTime",new java.util.Date());
+
+RequestDispatcher dispatcher = request.gerRequestDispatcher("/WEB-INF/jsp/home.jsp");
+
+dispatcher.forward(request,response);
+
+이렇게 처리 한것이
+
+스프링 mvc에서 model을 이용해서 데이터 전달을 하면
+
+public String home(Model model){
+
+	model.addAttribute("serverTime", new java.util.Date());
+	
+	return "home";
+}
+
+이렇게만으로 처리가 가능 하다.
+
+가독성은 물론이며 더 직관적인 코드가 되었다.
+
+
+2019-01-09
+1)오전
+	controller를 이용해서 request와 response 객체를 스프링에서 처리하는 방법및 http header를 가공하는 방법을 알게 되었다.
+	
+	upload하기 전에 설정하는 방법도 처리했으며, tomcat의 version을 9.0으로 upgrade처리 했다.
+
+2)오후
+
+	controller exception처리	
+
+	mvc 관련 기본 구성
+	
+	org.zerock pjt에서
+	
+	config : 프로젝트와 관련된 설정 클래스들의 보관 패키지
+	
+	controller : 스프링 mvc의 controller들의 보관 패키지
+	
+	service : 스프링의 service 인터페이스와 구현 클래스 패키지
+	
+	domain : vo,dto 클래스들의 패키지
+	
+	exception : 웹 관련 예외처리 패키지
+	
+	aop : 스프링의 aop 관련 패키지
+	
+	security : 스프링의 security 관련 패키지
+	
+	util : 스프링의 util 관련 패키지
+	
+	
+2019-01-10
+1)오전 데이터 베이스 연결을 위해서 작업 처리중..	
+
+2)오후 데이터 베이스 연결 처리완료
+
+기본적인 CRUD 처리 해봤음.
+
+비지니스 계층(service 계층 처리)
+
+2019-01-13
+1)오후
+test코드와 controller를 이용해서 직접 처리
+
+화면에 출력하다가 에러가 나는거 같음..
+
+오후 10:03 현재 확인중에 있음, 화면 레이아웃 같은것들은 다른곳에서 다운받아서 적용중.
+
+지속적인 에러 확인에도 처리가 안됨...
+
+jsp 파일의 경로를 못찾아서 404error가 뜨는데...
+
+내일도 삽질 예정..
+
+2019-01-14
+1)오후
+드디어 모든 문제를 해결했다...
+
+전에 있던 프로젝트의 설정이 업데이트를 하면 계속해서 1.6버전으로 변경되서 지우고 다시 했을때 deployment assembly에 ojdbc8을 추가 안해줘서
+
+지속적으로 jsp을 찾기전에 오류가 나서 db쪽에 지원을 못했었다..
+
+그래서 찾아서 처리를 하고 화면쪽도 처리를 해봤다.
+
+아마도 내일중에는 훨씬더 많이 해야될거 같다.

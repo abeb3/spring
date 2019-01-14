@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd" xmlns:context="http://www.springframework.org/schema/context" xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+<beans xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
 
-<property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" name="driverClassName"/>
+	<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
 
-<property value="jdbc:log4jdbc:oracle:thin:@localhost:1521:TestDB" name="jdbcUrl"/>
+		<property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+			name="driverClassName" />
 
-<property value="gon" name="username"/>
+		<property
+			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:TestDB"
+			name="jdbcUrl" />
 
-<property value="gon" name="password"/>
+		<property value="gon" name="username" />
 
-</bean>
+		<property value="gon" name="password" />
 
-<!-- HikariCP configuration -->
+	</bean>
 
-
-
-<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource" destroy-method="close">
-
-<constructor-arg ref="hikariConfig"/>
-
-</bean>
+	<!-- HikariCP configuration -->
 
 
-<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
 
-<property name="dataSource" ref="dataSource"/>
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource"
+		destroy-method="close">
 
-</bean>
+		<constructor-arg ref="hikariConfig" />
 
-<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	</bean>
 
-<context:component-scan base-package="org.zerock.service"/>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactory">
+
+		<property name="dataSource" ref="dataSource" />
+
+	</bean>
+
+	<mybatis-spring:scan
+		base-package="org.zerock.mapper" />
+
+	<context:component-scan
+		base-package="org.zerock.service" />
 </beans>

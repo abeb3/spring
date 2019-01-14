@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans:beans
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -25,34 +26,6 @@
 	</beans:bean>
 
 
-	<beans:bean
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-		id="multipartResolver">
-
-		<beans:property value="utf-8" name="defaultEncoding" />
-
-		<!-- 1024 * 1024 * 10 bytes 10MB -->
-
-
-		<beans:property value="104857560" name="maxUploadSize" />
-
-		<!-- 1024 * 1024 * 2 bytes 2MB -->
-
-
-		<beans:property value="2097152"
-			name="maxUploadSizePerFile" />
-
-		<beans:property value="file:/C:/upload/tmp"
-			name="uploadTempDir" />
-
-		<beans:property value="10485756" name="maxInMemorySize" />
-
-	</beans:bean>
-
-	<context:component-scan
-		base-package="org.zerock.controller" />
-
-	<context:component-scan
-		base-package="org.zerock.exception" />
+	<context:component-scan base-package="org.zerock.controller"/>
 
 </beans:beans>
