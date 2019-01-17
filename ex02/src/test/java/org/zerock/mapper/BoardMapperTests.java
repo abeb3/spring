@@ -1,11 +1,14 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,10 +24,10 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = {@Autowired})
 	private BoardMapper mapper;
 	
-	@Test
-	public void testGetList() {
-		mapper.getList().forEach(board -> log.info(board));
-	}
+//	@Test
+//	public void testGetList() {
+//		mapper.getList().forEach(board -> log.info(board));
+//	}
 	
 	
 	//insert문
@@ -41,14 +44,14 @@ public class BoardMapperTests {
 //		log.info(board);
 //	}
 	
-	//select문
-	@Test
-	public void testRead() {
-		//존재하는 게시물 번호로 테스트
-		BoardVO board = mapper.read(23L);
-		
-		log.info(board);
-	}
+//	//select문
+//	@Test
+//	public void testRead() {
+//		//존재하는 게시물 번호로 테스트
+//		BoardVO board = mapper.read(23L);
+//		
+//		log.info(board);
+//	}
 	
 	//update문
 //	@Test
@@ -70,6 +73,17 @@ public class BoardMapperTests {
 //		log.info("DELETE COUNT:" + mapper.delete(23L));
 //	}
 	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		
+		cri.setPageNum(3);
+		cri.setAmount(10);
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board.getBno()));
+	}
 
 }
 	
